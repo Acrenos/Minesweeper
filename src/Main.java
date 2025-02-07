@@ -12,7 +12,6 @@ public class Main {
         Scanner input = new Scanner(System.in);
 
 
-        minefield.RevealMinefield();
 
         while (gameLoop) {
             minefield.PrintMinefield();
@@ -21,10 +20,16 @@ public class Main {
             System.out.println("What column?");
             int col = input.nextInt() - 1;
             if (minefield.SquareHasMine(row, col)) {
+                minefield.RevealMinefield();
                 System.out.println("There was a mine there! You Lose!");
                 gameLoop = false;
             } else {
                 minefield.RevealSquare(row, col);
+            }
+            if (minefield.CheckWin()) {
+                minefield.RevealMinefield();
+                System.out.println("You Win!");
+                gameLoop = false;
             }
         }
 
