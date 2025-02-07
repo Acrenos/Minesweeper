@@ -25,7 +25,7 @@ public class Minefield {
     }
 
     public void RevealSquare(int x, int y) {
-        minefield[x][y].SetRevealed(true);
+        minefield[x][y].SetRevealed(true, minefield);
     }
 
     public void PrintMinefield() {
@@ -35,6 +35,19 @@ public class Minefield {
                     System.out.print(" " + gridSquare.GetAdjacentMines() + " ");
                 } else {
                     System.out.print(" - ");
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    public void RevealMinefield() {
+        for (GridSquare[] row : minefield) {
+            for (GridSquare gridSquare : row) {
+                if (gridSquare.HasMine()) {
+                    System.out.print(" # ");
+                } else {
+                    System.out.print(" " + gridSquare.GetAdjacentMines() + " ");
                 }
             }
             System.out.println();
